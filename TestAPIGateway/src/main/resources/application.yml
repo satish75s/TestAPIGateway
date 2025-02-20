@@ -4,28 +4,47 @@ server:
 spring:
   application:
     name: API-GATEWAY
-  cloud:
-   gateway:
-     routes:
-       - id: SERVICE-B
-         uri: lb://SERVICE-B
-         predicates:
-           - Path=/serviceb/**
-         filters:
-           - AuthenticationFilter
+#  cloud:
+#   gateway:
+#     routes:
+#       - id: super-admin-route
+#         uri: lb://TARGETSERVICE
+#         predicates:
+#           - Path=/target/sadmin
+#         filters:
+#           - name: JwtRoleCheckFilter
+#             args:
+#              requiredRole: ROLE_USER,ROLE_ADMIN
 #
+#       - id: user-route
+#         uri: lb://TARGETSERVICE
+#         predicates:
+#            - Path=/target/user
+#         filters:
+#           - name: JwtRoleCheckFilter
+#             args:
+#              requiredRole: ROLE_USER
 #
-       - id: SERVICE-A
-         uri: lb://SERVICE-A
-         predicates:
-           - Path=/servicea/**
-         filters:
-           - AuthenticationFilter
+#       - id: admin-route
+#         uri: lb://TARGETSERVICE
+#         predicates:
+#            - Path=/target/admin
+#         filters:
+#           - name: JwtRoleCheckFilter
+#             args:
+#              requiredRole: ROLE_ADMIN
 #
-       - id: AUTHSERVICE
-         uri: lb://AUTHSERVICE
-         predicates:
-           - Path=/user/**
+#       - id: all-route
+#         uri: lb://TARGETSERVICE
+#         predicates:
+#            - Path=/target/all
+#         filters:
+#           - name: JwtRoleCheckFilter
+#
+#       - id: AUTHSERVICE
+#         uri: lb://AUTHSERVICE
+#         predicates:
+#           - Path=/auth/**
 
 eureka:
   client:
